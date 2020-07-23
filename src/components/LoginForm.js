@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as yup from "yup";
+import axios from "axios";
 
 const formSchema = yup.object().shape({
   email: yup
@@ -46,6 +47,10 @@ const LoginForm = () => {
 
   const formSubmit = (event) => {
     event.preventDefault();
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
 
   const inputChange = (event) => {
