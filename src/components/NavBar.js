@@ -44,7 +44,7 @@ const Navigation = styled.div`
         &:hover {
             color: gray;
         }
-    }
+    } 
     img {
         height: 4rem;
         width: 10rem;
