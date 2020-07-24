@@ -3,16 +3,24 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../images/HowToLogo.jpg';
 
+import SearchForm from "./SearchForm";
+
 const NavBar = () => {
     return (
         <Navigation>
             <img src={Logo} alt='HowToLogo'/>
             <Link to='/'>Home</Link>
             <Link to='/about'>About</Link>
-            <form>
-                <input type='text' placeholder='Search...' name='search'></input>
-                <button type='submit'>Submit</button>
-            </form>
+            {/* <form className="search-form" onSubmit={getSearch}>
+                <input className="search-bar"
+                    type='text' 
+                    placeholder='Search...' 
+                    value={search}
+                    onChange={updateSearch}
+                />
+                <button className="search-button" type='submit'>Submit</button>
+            </form> */}
+            <SearchForm />
             <Link to='/login'>Login</Link>
             <Link to='/register'>Register</Link>
         </Navigation>
@@ -20,6 +28,8 @@ const NavBar = () => {
 }
 
 export default NavBar;
+
+
 
 const Navigation = styled.div`
     border-bottom: .1rem dashed gray;
