@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
@@ -14,6 +15,9 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
+
+  // const history = useHistory();
+
   const [formState, setFormState] = useState([
     {
       email: "",
@@ -49,7 +53,13 @@ const LoginForm = () => {
     event.preventDefault();
     axios
       .post("https://reqres.in/api/users", formState)
-      .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response)
+
+       // localStorage.setItem('token', res.data.payload) <-check endpoint for payload
+       // history.push(///)
+    })
+    
       .catch((error) => console.log(error));
   };
 
