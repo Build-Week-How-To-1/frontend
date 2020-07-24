@@ -19,12 +19,10 @@ const LoginForm = () => {
   const history = useHistory();
 
 
-  const [formState, setFormState] = useState([
-    {
-      email: "",
-      password: ""
-    }
-  ]);
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
 
   const [errorState, setErrorState] = useState({
     email: "",

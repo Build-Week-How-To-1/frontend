@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import NavBar from './components/NavBar.js'
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
+import HowToForm from "./components/HowToForm";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path='/register'>
               <SignUpForm />
             </Route>
+            <Route exact path="/howto-form" component={HowToForm} />
       </Switch>
     </BrowserRouter>
   );
