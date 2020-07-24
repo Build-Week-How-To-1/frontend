@@ -15,19 +15,20 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  const [formState, setFormState] = useState(
 
   // const history = useHistory();
 
   const [formState, setFormState] = useState([
     {
       email: "",
-      password: "",
-    },
-  ]);
+      password: ""
+    }
+  );
 
   const [errorState, setErrorState] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const validate = (event) => {
