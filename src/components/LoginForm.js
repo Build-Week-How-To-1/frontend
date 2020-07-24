@@ -14,12 +14,10 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
-  const [formState, setFormState] = useState([
-    {
-      email: "",
-      password: "",
-    },
-  ]);
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
 
   const [errorState, setErrorState] = useState({
     email: "",
