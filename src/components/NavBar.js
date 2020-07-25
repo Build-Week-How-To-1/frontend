@@ -35,6 +35,12 @@ const Navigation = styled.div`
     border-bottom: .1rem dashed gray;
     display:flex;
     justify-content: space-evenly;
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+        border-bottom: none;
+    }
+    
     a {
         text-decoration: none;
         color: black;
@@ -44,22 +50,50 @@ const Navigation = styled.div`
         &:hover {
             color: gray;
         }
+
+        @media (max-width: 550px) {
+            border: .1rem solid orange;
+            text-align: center;
+            padding: .5rem;
+            margin: .1rem;
+            border-radius: .5rem;
+        }
     } 
+
     img {
         height: 4rem;
         width: 10rem;
+
+        @media (max-width: 550px) {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            order: -1;
+        }
     }
+
     form {
         display: flex;
         height: 1.8rem;
         align-items: center;
         justify-content: center;
         padding-top: .7rem;
+
+        @media (max-width: 550px) {
+            order: -1;
+            margin-bottom: .5rem;
+        }
     }
+
     input {
          border: .1rem solid orange;
          outline: none;
+
+         @media (max-width: 550px) {
+            height: 1.5rem;
+        }
     }
+
     button{
         border: .1rem solid black;
         background-color: white;
