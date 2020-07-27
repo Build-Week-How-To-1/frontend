@@ -1,16 +1,21 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import NavBar from './components/NavBar.js'
-import LoginForm from "./components/LoginForm";
-import SignUpForm from "./components/SignUpForm";
-import HowToForm from "./components/HowToForm";
 
+import HomePage from './components/HomePage.js';
+import NavBar from './components/NavBar.js';
+
+import LoginForm from './components/LoginForm.js';
+import SignUpForm from './components/SignUpForm.js';
+import HowToForm from './components/HowToForm.js';
 
 function App() {
   return (
     <BrowserRouter>
         <NavBar/>
         <Switch>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
             <Route path='/login'>
               <LoginForm />
             </Route>
