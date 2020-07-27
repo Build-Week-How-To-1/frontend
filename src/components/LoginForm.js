@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import styled from "styled-components";
 
 const formSchema = yup.object().shape({
   email: yup
@@ -15,9 +16,7 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
-
   const history = useHistory();
-
 
   const [formState, setFormState] = useState({
     email: "",
@@ -26,9 +25,8 @@ const LoginForm = () => {
 
   const [errorState, setErrorState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
-
 
   const validate = (event) => {
     yup
@@ -53,13 +51,13 @@ const LoginForm = () => {
     event.preventDefault();
     axios
       .post("https://reqres.in/api/users", formState)
-    .then((response) => {
-      console.log(response)
+      .then((response) => {
+        console.log(response);
 
-       // localStorage.setItem('token', res.data.payload) <-check endpoint for payload
-       // history.push(///)
-    })
-    
+        // localStorage.setItem('token', res.data.payload) <-check endpoint for payload
+        // history.push(///)
+      })
+
       .catch((error) => console.log(error));
   };
 
@@ -72,28 +70,46 @@ const LoginForm = () => {
     });
   };
 
+  const LoginCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: lightgray;
+    border: 0.3rem solid gray;
+
+    input {
+      border: 0.1rem solid orange;
+    }
+  `;
+
   return (
-    <form onSubmit={formSubmit}>
-      <label htmlFor="email">Email: </label>
-      <input
-        id="email"
-        type="text"
-        name="email"
-        value={formState.email}
-        onChange={inputChange}
-      />
-      {errorState.email.length > 0 ? <p>{errorState.email}</p> : null}
-      <label htmlFor="password"> Password: </label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        value={formState.password}
-        onChange={inputChange}
-      />
-      {errorState.password.length > 0 ? <p>{errorState.password}</p> : null}
-      <button>Login</button>
-    </form>
+    <LoginCard>
+      <form onSubmit={formSubmit}>
+        <label htmlFor="email">Email: </label>
+        <input
+          id="email"
+          type="text"
+          name="email"
+          value={formState.email}
+          onChange={inputChange}
+        />
+        {errorState.email.length > 0 ? <p>{errorState.email}</p> : null}
+        <label htmlFor="password"> Password: </label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          value={formState.password}
+          onChange={inputChange}
+        />
+        {errorState.password.length > 0 ? <p>{errorState.password}</p> : null}
+        <button>Login</button>
+      </form>
+    </LoginCard>
   );
 };
 

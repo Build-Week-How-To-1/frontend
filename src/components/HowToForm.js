@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as yup from "yup";
 import Axios from "axios";
+import styled from "styled-components";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -56,56 +57,89 @@ const HowToForm = () => {
     setHowtoState({ ...howtoState, [event.target.name]: event.target.value });
   };
 
+  const HowCard = styled.div`
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 1rem;
+    background-color: lightgray;
+    border: 0.3rem solid gray;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      label {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input {
+        width: 35rem;
+        border: 0.1rem solid orange;
+      }
+
+      textarea {
+        width: 35rem;
+        border: 0.1rem solid orange;
+      }
+    }
+  `;
+
   return (
-    <form onSubmit={formSubmit}>
-      <label htmlFor="title">
-        Title - Add a catchy title
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={howtoState.title}
-          onChange={inputChange}
-        />
-        {errorState.title.length > 0 ? <p>{errorState.title}</p> : null}
-      </label>
-      <label htmlFor="introduction">
-        Introduction - Share a quick intro with your DIYer
-        <input
-          type="text"
-          name="introduction"
-          id="introduction"
-          value={howtoState.introduction}
-          onChange={inputChange}
-        />
-        {errorState.introduction.length > 0 ? (
-          <p>{errorState.introduction}</p>
-        ) : null}
-      </label>
-      <label htmlFor="steps">
-        Steps - Enter each step to your process here. Be as clear and
-        descriptive as possible
-        <input
-          type="text"
-          name="steps"
-          id="steps"
-          value={howtoState.steps}
-          onChange={inputChange}
-        />
-        {errorState.steps.length > 0 ? <p>{errorState.steps}</p> : null}
-      </label>
-      <label htmlFor="tips">
-        Tips - Enter any tips, warnings, supplies needed, etc
-        <input
-          type="text"
-          name="tips"
-          id="tips"
-          value={howtoState.tips}
-          onChange={inputChange}
-        />
-      </label>
-      <button type="submit">Create Post</button>
-    </form>
+    <HowCard>
+      <form onSubmit={formSubmit}>
+        <label htmlFor="title">
+          Title - Add a catchy title
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={howtoState.title}
+            onChange={inputChange}
+          />
+          {errorState.title.length > 0 ? <p>{errorState.title}</p> : null}
+        </label>
+        <label htmlFor="introduction">
+          Introduction - Share a quick intro with your DIYer
+          <input
+            type="text"
+            name="introduction"
+            id="introduction"
+            value={howtoState.introduction}
+            onChange={inputChange}
+          />
+          {errorState.introduction.length > 0 ? (
+            <p>{errorState.introduction}</p>
+          ) : null}
+        </label>
+        <label htmlFor="steps">
+          Steps - Enter each step to your process here
+          <textarea
+            type="text"
+            name="steps"
+            id="steps"
+            value={howtoState.steps}
+            onChange={inputChange}
+          />
+          {errorState.steps.length > 0 ? <p>{errorState.steps}</p> : null}
+        </label>
+        <label htmlFor="tips">
+          Tips - Enter any tips, warnings, supplies needed, etc
+          <textarea
+            type="text"
+            name="tips"
+            id="tips"
+            value={howtoState.tips}
+            onChange={inputChange}
+          />
+        </label>
+        <button type="submit">Create Post</button>
+      </form>
+    </HowCard>
   );
 };
 
