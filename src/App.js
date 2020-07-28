@@ -8,6 +8,8 @@ import HomePage from './components/HomePage.js';
 import LoginForm from './components/LoginForm.js';
 import SignUpForm from './components/SignUpForm.js';
 import HowToForm from './components/HowToForm.js';
+import AboutPage from './components/AboutPage.js';
+
 
 function App() {
   return (
@@ -16,6 +18,9 @@ function App() {
         <Switch>
             <Route exact path='/'>
               <HomePage />
+            </Route>
+            <Route path='/about'>
+              <AboutPage />
             </Route>
             <Route path='/login'>
               <LoginForm />

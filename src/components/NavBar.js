@@ -48,8 +48,12 @@ const Navigation = styled.div`
         font-weight: bold;
 
         &:hover {
+            color: darkgray;
+
+            @media (max-width: 700px) {
             border: .1rem solid black;
             color: orange;
+            }
         }
 
         @media (max-width: 700px) {
