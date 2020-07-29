@@ -31,7 +31,7 @@ const HomePage = () => {
                             <button>Share Your DIY!</button>
                         </Sharing>
                         <Featured>
-                            <h4>Featured HowTos:</h4>
+                            <h4>Featured How Tos:</h4>
                         </Featured>
                     </Content>
                 </Home>
@@ -51,9 +51,23 @@ const HomePageBanner = styled.div `
     align-items: center;
     font-size: 1.2rem;
 
+    @media (max-width: 700px) {
+        font-size: 1rem; 
+        flex-direction: column;    
+        height: 30rem;          
+    }
+
     img {
         height: 100%;
+
+        @media (max-width: 700px) {
+            height: 60%    
+        }
+        @media (max-width: 550px) {
+            height: 50%    
+        }
     }
+
     h2 {
         color: black;
         text-align: center;
@@ -64,19 +78,53 @@ const HomePageBanner = styled.div `
 
 const Home = styled.div `
     display: flex;
+
+    @media (max-width: 700px) {
+        width: 100vw;
+        display: block;
+    }
 `
 
 const Categories = styled.div `
-    width: 30%vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     font-size: 1.1rem;
+
+    h4 {
+        width: 100vw;
+        margin-left: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+        width: 100vw;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;  
+        justify-content: space-evenly;
+    }
 
     button {
         border: .1rem solid orange;
         background-color: white;
         border-radius: .3rem;
         font-size: .8rem;
+
+        @media (max-width: 700px) {
+            width: 45vw;
+            font-size: 1rem;          
+        }
+
+        @media (max-width: 500px) {
+            width: 90vw;
+            font-size: 1rem;          
+        }
+
+        &:hover {
+            color: orange;
+            border: .1rem solid black;
+        }
     }
 `
 
@@ -91,6 +139,11 @@ const Sharing = styled.div `
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 700px) {
+        width: 95vw;
+        margin-top: 1rem;
+    }
 
     button {
         background-color: lightgray;
