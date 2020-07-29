@@ -57,38 +57,6 @@ const HowToForm = () => {
     setHowtoState({ ...howtoState, [event.target.name]: event.target.value });
   };
 
-  const HowCard = styled.div`
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 1rem;
-    background-color: lightgray;
-    border: 0.3rem solid gray;
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-
-      label {
-        display: flex;
-        flex-direction: column;
-      }
-
-      input {
-        width: 35rem;
-        border: 0.1rem solid orange;
-      }
-
-      textarea {
-        width: 35rem;
-        border: 0.1rem solid orange;
-      }
-    }
-  `;
-
   return (
     <HowCard>
       <form onSubmit={formSubmit}>
@@ -144,3 +112,39 @@ const HowToForm = () => {
 };
 
 export default HowToForm;
+
+const HowCard = styled.div`
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 1rem;
+  background-color: lightgray;
+  border: 0.3rem solid gray;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      width: 35rem;
+      border: 0.1rem solid orange;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 35rem;
+      border: 0.1rem solid orange;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+`;
