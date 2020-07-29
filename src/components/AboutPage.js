@@ -38,7 +38,7 @@ const AboutPage = () => {
                             <h3>Tony So</h3>
                             <p>FrontEnd Developer</p>
                             <a href='https://github.com/TonySo88'><AiFillGithub/></a>
-                            <a><AiFillLinkedin/></a>
+                            <a href='https://www.linkedin.com/in/tony-so-aa1742109/'><AiFillLinkedin/></a>
                         </Odd>
                         <Even>
                             <img src={Claudia}></img>
