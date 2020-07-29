@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import Axios from "axios";
+//import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -25,6 +27,14 @@ const HowToForm = () => {
     tips: "",
   });
 
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    formSchema.isValid(howtoState).then((valid) => {
+      setButtonDisabled(!valid);
+      });
+  }, [howtoState]);
+
   const validate = (event) => {
     yup
       .reach(formSchema, event.target.name)
@@ -46,9 +56,25 @@ const HowToForm = () => {
 
   const formSubmit = (event) => {
     event.preventDefault();
-    Axios.post("https://reqres.in/api/users", howtoState)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+
+    axiosWithAuth()
+      .get("/howto-form")
+      .then((res) => {
+        setHowtoState(res.data);
+      })
+      .catch(err => console.log(err));
+
+      axiosWithAuth()
+        .post("/howto-form", {...howtoState})
+        .then((res) => {
+          setHowtoState(res.data)
+          console.log("post: ", res.data);
+        })
+        .catch(err => console.log(err));
+
+    // Axios.post("https://reqres.in/api/users", howtoState)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => console.log(error));
   };
 
   const inputChange = (event) => {
@@ -105,7 +131,7 @@ const HowToForm = () => {
             onChange={inputChange}
           />
         </label>
-        <button type="submit">Create Post</button>
+        <button type="submit" disabled={buttonDisabled}>Create Post</button>
       </form>
     </HowCard>
   );
