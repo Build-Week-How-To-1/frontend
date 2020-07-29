@@ -28,7 +28,7 @@ const AboutPage = () => {
                             <img></img>
                             <h3>Tony So</h3>
                             <p>FrontEnd Developer</p>
-                            <a><AiFillGithub/></a>
+                            <a href='https://github.com/TonySo88'><AiFillGithub/></a>
                             <a><AiFillLinkedin/></a>
                         </section>
                         <section>
@@ -42,14 +42,14 @@ const AboutPage = () => {
                             <img></img>
                             <h3>Kim Boyd</h3>
                             <p>FrontEnd Framework Developer</p>
-                            <a><AiFillGithub/></a>
+                            <a href='https://github.com/kimboyd12'><AiFillGithub/></a>
                             <a><AiFillLinkedin/></a>
                         </section>
                         <section>
                             <img></img>
                             <h3>Taylor Palmer</h3>
                             <p>Backend Developer</p>
-                            <a><AiFillGithub/></a>
+                            <a href='https://github.com/taylorpalmer'><AiFillGithub/></a>
                             <a><AiFillLinkedin/></a>
                         </section>
                     </TeamMembers>
