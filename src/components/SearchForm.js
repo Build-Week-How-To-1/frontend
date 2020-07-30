@@ -8,7 +8,7 @@ const SearchForm = () => {
 
     useEffect (() => {
         axios
-            .get()
+            .get(howtos)
             .then(res => {
                 const howTo = res.data.filter((tutorial) => tutorial.title.includes(query));
                 setData(howTo);
