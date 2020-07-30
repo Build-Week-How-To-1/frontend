@@ -13,7 +13,6 @@ import AboutPage from './components/AboutPage.js';
 import HowToCardList from './components/HowToCardList';
 import HowToContext from './contexts/HowToContext';
 
-
 function App() {
 
   const [howTos, setHowTos] = useState([])
@@ -23,21 +22,21 @@ function App() {
   return (
     <HowToContext.Provider value={{howTos, setHowTos}}>
     <Router>
-        <NavBar/>
-        <Switch>
-            <Route exact path='/'>
-              <HomePage />
-            </Route>
-            <Route path='/about'>
-              <AboutPage />
-            </Route>
-            <Route path='/login'>
-              <LoginForm />
-            </Route>
-            <Route path='/register'>
-              <SignUpForm />
-            </Route>
-            <PrivateRoute exact path="/howto-form" component={HowToForm} />
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="/about">
+          <AboutPage />
+        </Route>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
+        <Route path="/register">
+          <SignUpForm />
+        </Route>
+        <PrivateRoute exact path="/howto-form" component={HowToForm} />
       </Switch>
     </Router>
     </HowToContext.Provider>

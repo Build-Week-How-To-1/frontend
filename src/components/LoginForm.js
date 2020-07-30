@@ -110,6 +110,18 @@ const LoginCard = styled.div`
   background-color: lightgray;
   border: 0.3rem solid gray;
 
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+
+    input {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
   input {
     border: 0.1rem solid orange;
   }
