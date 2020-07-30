@@ -27,7 +27,7 @@ function App() {
         <Route path="/register">
           <SignUpForm />
         </Route>
-        <Route exact path="/howto-form" component={HowToForm} />
+        <PrivateRoute exact path="/howto-form" component={HowToForm} />
       </Switch>
     </Router>
   );
