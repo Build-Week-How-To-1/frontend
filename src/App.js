@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -9,10 +9,16 @@ import LoginForm from './components/LoginForm.js';
 import SignUpForm from './components/SignUpForm.js';
 import HowToForm from './components/HowToForm.js';
 import AboutPage from './components/AboutPage.js';
+import HowToCardList from './components/HowToCardList';
+import HowToContext from './contexts/HowToContext';
 
 
 function App() {
+
+  const [howTos, setHowTos] = useState([])
+
   return (
+    <HowToContext.Provider value={{howTos, setHowTos}}>
     <Router>
         <NavBar/>
         <Switch>
@@ -30,7 +36,9 @@ function App() {
             </Route>
             <PrivateRoute exact path="/howto-form" component={HowToForm} />
       </Switch>
+      <HowToCardList />
     </Router>
+    </HowToContext.Provider>
   );
 }
 
