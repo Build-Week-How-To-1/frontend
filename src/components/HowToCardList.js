@@ -4,7 +4,6 @@ import axios from 'axios';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import HowToForm from './HowToForm';
 import HowToContext from "../contexts/HowToContext";
-import { fetchHowTos } from "../components/fetchHowTos";
 
 
 const initialHowTo = {
