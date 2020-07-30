@@ -18,6 +18,7 @@ const HowToForm = () => {
     introduction: "",
     steps: "",
     tips: "",
+    id: Date.now()
   });
 
   const [errorState, setErrorState] = useState({
@@ -25,6 +26,7 @@ const HowToForm = () => {
     introduction: "",
     steps: "",
     tips: "",
+    id: ""
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -32,7 +34,7 @@ const HowToForm = () => {
   useEffect(() => {
     formSchema.isValid(howtoState).then((valid) => {
       setButtonDisabled(!valid);
-      });
+    });
   }, [howtoState]);
 
   const validate = (event) => {
@@ -62,15 +64,15 @@ const HowToForm = () => {
       .then((res) => {
         setHowtoState(res.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
 
-      axiosWithAuth()
-        .post("/howto-form", {...howtoState})
-        .then((res) => {
-          setHowtoState(res.data)
-          console.log("post: ", res.data);
-        })
-        .catch(err => console.log(err));
+    axiosWithAuth()
+      .post("/howto-form", { ...howtoState })
+      .then((res) => {
+        setHowtoState(res.data);
+        console.log("post: ", res.data);
+      })
+      .catch((err) => console.log(err));
 
     // Axios.post("https://reqres.in/api/users", howtoState)
     //   .then((response) => console.log(response))
@@ -82,38 +84,6 @@ const HowToForm = () => {
     validate(event);
     setHowtoState({ ...howtoState, [event.target.name]: event.target.value });
   };
-
-  const HowCard = styled.div`
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 1rem;
-    background-color: lightgray;
-    border: 0.3rem solid gray;
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-
-      label {
-        display: flex;
-        flex-direction: column;
-      }
-
-      input {
-        width: 35rem;
-        border: 0.1rem solid orange;
-      }
-
-      textarea {
-        width: 35rem;
-        border: 0.1rem solid orange;
-      }
-    }
-  `;
 
   return (
     <HowCard>
@@ -163,10 +133,67 @@ const HowToForm = () => {
             onChange={inputChange}
           />
         </label>
-        <button type="submit" disabled={buttonDisabled}>Create Post</button>
+        <button type="submit" disabled={buttonDisabled}>
+          Create Post
+        </button>
       </form>
     </HowCard>
   );
 };
 
 export default HowToForm;
+
+const HowCard = styled.div`
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 1rem;
+  background-color: lightgray;
+  border: 0.3rem solid gray;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      width: 35rem;
+      border: 0.1rem solid orange;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 35rem;
+      border: 0.1rem solid orange;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    width: 25rem;
+    text-align: center;
+
+    label {
+      display: flex;
+      justify-content: center;
+      width: 22rem;
+    }
+
+    form input {
+      width: 100%;
+    }
+
+    form textarea {
+      width: 100%;
+    }
+  }
+`;

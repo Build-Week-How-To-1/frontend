@@ -36,7 +36,7 @@ const Navigation = styled.div`
     display:flex;
     justify-content: space-evenly;
 
-    @media (max-width: 550px) {
+    @media (max-width: 700px) {
         flex-direction: column;
         border-bottom: none;
     }
@@ -48,10 +48,15 @@ const Navigation = styled.div`
         font-weight: bold;
 
         &:hover {
-            color: gray;
+            color: darkgray;
+
+            @media (max-width: 700px) {
+            border: .1rem solid black;
+            color: orange;
+            }
         }
 
-        @media (max-width: 550px) {
+        @media (max-width: 700px) {
             border: .1rem solid orange;
             text-align: center;
             padding: .5rem;
@@ -64,7 +69,7 @@ const Navigation = styled.div`
         height: 4rem;
         width: 10rem;
 
-        @media (max-width: 550px) {
+        @media (max-width: 700px) {
             display: flex;
             flex-direction: column;
             align-self: center;
@@ -79,7 +84,7 @@ const Navigation = styled.div`
         justify-content: center;
         padding-top: .7rem;
 
-        @media (max-width: 550px) {
+        @media (max-width: 700px) {
             order: -1;
             margin-bottom: .5rem;
         }
@@ -89,7 +94,7 @@ const Navigation = styled.div`
          border: .1rem solid orange;
          outline: none;
 
-         @media (max-width: 550px) {
+         @media (max-width: 700px) {
             height: 1.5rem;
         }
     }
@@ -97,9 +102,14 @@ const Navigation = styled.div`
     button{
         border: .1rem solid black;
         background-color: white;
+
         &:hover {
-            border: .1rem solid gray;
-            background-color: white;
+            border: .1rem solid black;
+            color: orange
+        }
+
+        @media (max-width: 700px) {
+            height: 1.5rem;
         }
     }
 

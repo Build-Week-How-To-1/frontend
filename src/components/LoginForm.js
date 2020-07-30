@@ -29,6 +29,7 @@ const LoginForm = () => {
   });
 
   const validate = (event) => {
+    event.persist();
     yup
       .reach(formSchema, event.target.name)
       .validate(event.target.value)
@@ -60,31 +61,14 @@ const LoginForm = () => {
 
       .catch((error) => console.log(error));
   };
-
+  console.log("I was rendered");
   const inputChange = (event) => {
-    event.persist();
-    validate(event);
     setFormState({
       ...formState,
       [event.target.name]: event.target.value,
     });
+    validate(event);
   };
-
-  const LoginCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: lightgray;
-    border: 0.3rem solid gray;
-
-    input {
-      border: 0.1rem solid orange;
-    }
-  `;
 
   return (
     <LoginCard>
@@ -114,3 +98,31 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+const LoginCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: lightgray;
+  border: 0.3rem solid gray;
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+
+    input {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  input {
+    border: 0.1rem solid orange;
+  }
+`;

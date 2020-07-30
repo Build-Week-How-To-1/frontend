@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -16,6 +16,15 @@ const SignUpForm = () => {
             password: '',
         },
     ]);
+
+    const [buttonDisabled, setButtonDisabled] =useState(true);
+
+    useEffect(() => {
+        formSchema.isValid(formState)
+            .then(valid => {
+                setButtonDisabled(!valid);
+        });
+    }, [formState]);
 
     const [errorState, setErrorState] = useState({
         email: '',
@@ -83,7 +92,7 @@ const SignUpForm = () => {
                     value={formState.password}
                     onChange={handleChange}/>
                     {errorState.password.length > 0 ? <p>{errorState.password}</p> : null}
-                    <button>Register</button>
+                    <button id="submit" disabled={buttonDisabled}>Register</button>
             </form>
         </FormContainer> 
     );
