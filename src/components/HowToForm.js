@@ -32,7 +32,7 @@ const HowToForm = () => {
   useEffect(() => {
     formSchema.isValid(howtoState).then((valid) => {
       setButtonDisabled(!valid);
-      });
+    });
   }, [howtoState]);
 
   const validate = (event) => {
@@ -62,15 +62,15 @@ const HowToForm = () => {
       .then((res) => {
         setHowtoState(res.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
 
-      axiosWithAuth()
-        .post("/howto-form", {...howtoState})
-        .then((res) => {
-          setHowtoState(res.data)
-          console.log("post: ", res.data);
-        })
-        .catch(err => console.log(err));
+    axiosWithAuth()
+      .post("/howto-form", { ...howtoState })
+      .then((res) => {
+        setHowtoState(res.data);
+        console.log("post: ", res.data);
+      })
+      .catch((err) => console.log(err));
 
     // Axios.post("https://reqres.in/api/users", howtoState)
     //   .then((response) => console.log(response))
@@ -131,7 +131,9 @@ const HowToForm = () => {
             onChange={inputChange}
           />
         </label>
-        <button type="submit" disabled={buttonDisabled}>Create Post</button>
+        <button type="submit" disabled={buttonDisabled}>
+          Create Post
+        </button>
       </form>
     </HowCard>
   );
@@ -171,6 +173,25 @@ const HowCard = styled.div`
       border: 0.1rem solid orange;
       margin-top: 1rem;
       margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    width: 25rem;
+    text-align: center;
+
+    label {
+      display: flex;
+      justify-content: center;
+      width: 22rem;
+    }
+
+    form input {
+      width: 100%;
+    }
+
+    form textarea {
+      width: 100%;
     }
   }
 `;
