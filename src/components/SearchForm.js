@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const SearchForm = () => {
     const [data, setData] = useState([]);
@@ -7,11 +7,12 @@ const SearchForm = () => {
     const [query, setQuery] = useState("");
 
     useEffect (() => {
-        axios
-            .get(howtos)
+        axiosWithAuth()
+            .get("/howtos")
             .then(res => {
-                const howTo = res.data.filter((tutorial) => tutorial.title.includes(query));
-                setData(howTo);
+                // const howTo = res.data.filter((tutorial) => tutorial.title.includes(query));
+                // setData(howTo);
+                console.log(res, 'how to index working');
             });
     }, [query]);
 
