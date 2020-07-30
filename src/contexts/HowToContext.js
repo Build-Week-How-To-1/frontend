@@ -1,3 +1,5 @@
 import React, { createContext } from "react";
 
-export const HowToContext = createContext();
+const HowToContext = createContext();
+
+export default HowToContext;
