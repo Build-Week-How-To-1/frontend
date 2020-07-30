@@ -18,6 +18,7 @@ const HowToForm = () => {
     introduction: "",
     steps: "",
     tips: "",
+    id: Date.now()
   });
 
   const [errorState, setErrorState] = useState({
@@ -25,6 +26,7 @@ const HowToForm = () => {
     introduction: "",
     steps: "",
     tips: "",
+    id: ""
   });
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
