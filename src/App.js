@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Switch, BrowserRouter as Router, Link } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import axios from "axios";
 
 import NavBar from './components/NavBar.js'
 import HomePage from './components/HomePage.js';
@@ -16,6 +17,8 @@ import HowToContext from './contexts/HowToContext';
 function App() {
 
   const [howTos, setHowTos] = useState([])
+
+  //  get request, add into provider value
 
   return (
     <HowToContext.Provider value={{howTos, setHowTos}}>
