@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import styled from 'styled-components';
 import axios from 'axios';
-import Logo from '../images/Logo.jpg'
+import Logo from '../images/HowToLogo.jpg'
 
 const formSchema = yup.object().shape({
     email: yup.string().required('Email is a required field.').email('Must be a valid email address.'),
