@@ -60,21 +60,21 @@ const HowToForm = () => {
     event.preventDefault();
 
     axiosWithAuth()
-      .get("/howto-form")
+      .get("/howtos")
       .then((res) => {
         setHowtoState(res.data);
       })
       .catch((err) => console.log(err));
 
     axiosWithAuth()
-      .post("/howto-form", { ...howtoState })
+      .post("/howtos", { ...howtoState })
       .then((res) => {
         setHowtoState(res.data);
         console.log("post: ", res.data);
       })
       .catch((err) => console.log(err));
 
-    // Axios.post("https://reqres.in/api/users", howtoState)
+    // Axios.post("", howtoState)
     //   .then((response) => console.log(response))
     //   .catch((error) => console.log(error));
   };

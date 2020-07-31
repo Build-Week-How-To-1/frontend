@@ -55,8 +55,8 @@ const LoginForm = () => {
       .then((response) => {
         console.log(response);
 
-        // localStorage.setItem('token', res.data.payload) <-check endpoint for payload
-        // history.push(///)
+        localStorage.setItem('token', response.data.payload)
+        history.push("/howto-form")
       })
 
       .catch((error) => console.log(error));
