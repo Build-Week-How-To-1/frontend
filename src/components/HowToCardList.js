@@ -82,10 +82,6 @@ const HowToCardList = () => {
             
          </div>
      )
-
-    
-
-
 }
 
 export default HowToCardList;
