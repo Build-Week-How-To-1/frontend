@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios';
 
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 import HowToForm from './HowToForm';
 import HowToContext from "../contexts/HowToContext";
 
@@ -22,7 +22,7 @@ const HowToCardList = () => {
     // get request for howTos
     const getHowTos = () => {
         axios
-            .get('https://how-to1.herokuapp.com/howtos')
+            .get('https://how-to1.herokuapp.com/api/howtos')
             .then(res => setHowTos(res.data))
             .catch(err => console.log(err));
     };
@@ -72,9 +72,19 @@ const HowToCardList = () => {
              <ul>
                 {howTos.map((howTo) => (
                     <li key={howTo.id} onClick={() => editHowTo(howTo)}>
+                        <div classname="howto-card">
+                            <h4>{howTo.title}</h4>
+                            <h3>{howTo.instructions}</h3>
+                            <h3>{howTo.steps}</h3>
+                            <h3>{howTo.tips}</h3>
+                        </div>
                         <button className="delete" 
                         onClick={deleteHowTo}>
                             Delete
+                        </button>
+                        <button className="edit" 
+                        onClick={saveEdit}>
+                            Edit
                         </button>
                     </li>
                 ))}

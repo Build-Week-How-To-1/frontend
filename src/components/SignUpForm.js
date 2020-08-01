@@ -63,7 +63,7 @@ const SignUpForm = () => {
         e.preventDefault();
         console.log(formState);
         axios
-            .post('https://reqres.in/api/users', formState)
+            .post('https://how-to1.herokuapp.com/api/users/register', formState)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
     };

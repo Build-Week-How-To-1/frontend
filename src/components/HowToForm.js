@@ -3,7 +3,7 @@ import * as yup from "yup";
 import Axios from "axios";
 //import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -58,6 +58,7 @@ const HowToForm = () => {
 
   const formSubmit = (event) => {
     event.preventDefault();
+    console.log('created new howto')
 
     axiosWithAuth()
       .get("/howtos")
@@ -74,9 +75,6 @@ const HowToForm = () => {
       })
       .catch((err) => console.log(err));
 
-    // Axios.post("", howtoState)
-    //   .then((response) => console.log(response))
-    //   .catch((error) => console.log(error));
   };
 
   const inputChange = (event) => {
