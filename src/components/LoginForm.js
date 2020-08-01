@@ -51,12 +51,12 @@ const LoginForm = () => {
   const formSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://reqres.in/api/users", formState)
+      .post("https://how-to1.herokuapp.com/api/users/login", formState)
       .then((response) => {
         console.log(response);
 
-        // localStorage.setItem('token', res.data.payload) <-check endpoint for payload
-        // history.push(///)
+        localStorage.setItem('token', response.data.token)
+        history.push("/howto-form")
       })
 
       .catch((error) => console.log(error));

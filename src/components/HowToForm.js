@@ -3,7 +3,7 @@ import * as yup from "yup";
 import Axios from "axios";
 //import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -58,25 +58,23 @@ const HowToForm = () => {
 
   const formSubmit = (event) => {
     event.preventDefault();
+    console.log('created new howto')
 
     axiosWithAuth()
-      .get("/howto-form")
+      .get("/howtos")
       .then((res) => {
         setHowtoState(res.data);
       })
       .catch((err) => console.log(err));
 
     axiosWithAuth()
-      .post("/howto-form", { ...howtoState })
+      .post("/howtos", { ...howtoState })
       .then((res) => {
         setHowtoState(res.data);
         console.log("post: ", res.data);
       })
       .catch((err) => console.log(err));
 
-    // Axios.post("https://reqres.in/api/users", howtoState)
-    //   .then((response) => console.log(response))
-    //   .catch((error) => console.log(error));
   };
 
   const inputChange = (event) => {
