@@ -4,6 +4,7 @@ import Axios from "axios";
 //import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import HowToCardList from "../components/HowToCardList";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -35,7 +36,7 @@ const HowToForm = () => {
   }, [howtoState]);
 
   const validate = (event) => {
-    yup
+    yup 
       .reach(formSchema, event.target.name)
       .validate(event.target.value)
       .then((valid) => {
@@ -83,6 +84,7 @@ const HowToForm = () => {
   };
 
   return (
+    <div>
     <HowCard>
       <form onSubmit={formSubmit}>
         <label htmlFor="title">
@@ -120,8 +122,10 @@ const HowToForm = () => {
         <button type="submit" disabled={buttonDisabled}>
           Create Post
         </button>
-      </form>
+        </form>
     </HowCard>
+      <HowToCardList />
+      </div>
   );
 };
 

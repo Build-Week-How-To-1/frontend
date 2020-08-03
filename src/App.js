@@ -40,7 +40,6 @@ function App() {
         <PrivateRoute exact path="/howto-form" component={HowToForm} />
         <PrivateRoute exact path="/edit-howto" component={EditHowTo} />
       </Switch>
-      <HowToCardList />
     </Router>
     </HowToContext.Provider>
   );
