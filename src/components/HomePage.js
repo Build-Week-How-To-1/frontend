@@ -31,7 +31,7 @@ const HomePage = () => {
         <Content>
           <Sharing>
             <h3>Have a DIY to share?</h3>
-            <button>Share Your DIY!</button>
+            <a><button href="/howto-form"> Share Your DIY!</button></a>
           </Sharing>
           <Featured>
             <h4>Featured How Tos:</h4>

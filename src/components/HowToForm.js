@@ -4,28 +4,26 @@ import Axios from "axios";
 //import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import HowToCardList from "../components/HowToCardList";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("Title is required"),
-  introduction: yup.string().required("Intro is required"),
   steps: yup.string().required("Steps are required"),
-  tips: yup.string(),
+  resources: yup.string().required("Resources are required"),
 });
 
 const HowToForm = () => {
   const [howtoState, setHowtoState] = useState({
     title: "",
-    introduction: "",
     steps: "",
-    tips: "",
-    id: Date.now()
+    resources: "",
+    id: Date.now(),
   });
 
   const [errorState, setErrorState] = useState({
     title: "",
-    introduction: "",
     steps: "",
-    tips: "",
+    resources: "",
     id: ""
   });
 
@@ -38,7 +36,7 @@ const HowToForm = () => {
   }, [howtoState]);
 
   const validate = (event) => {
-    yup
+    yup 
       .reach(formSchema, event.target.name)
       .validate(event.target.value)
       .then((valid) => {
@@ -75,6 +73,8 @@ const HowToForm = () => {
       })
       .catch((err) => console.log(err));
 
+      setHowtoState("");
+
   };
 
   const inputChange = (event) => {
@@ -84,6 +84,7 @@ const HowToForm = () => {
   };
 
   return (
+    <div>
     <HowCard>
       <form onSubmit={formSubmit}>
         <label htmlFor="title">
@@ -97,19 +98,6 @@ const HowToForm = () => {
           />
           {errorState.title.length > 0 ? <p>{errorState.title}</p> : null}
         </label>
-        <label htmlFor="introduction">
-          Introduction - Share a quick intro with your DIYer
-          <input
-            type="text"
-            name="introduction"
-            id="introduction"
-            value={howtoState.introduction}
-            onChange={inputChange}
-          />
-          {errorState.introduction.length > 0 ? (
-            <p>{errorState.introduction}</p>
-          ) : null}
-        </label>
         <label htmlFor="steps">
           Steps - Enter each step to your process here
           <textarea
@@ -121,21 +109,23 @@ const HowToForm = () => {
           />
           {errorState.steps.length > 0 ? <p>{errorState.steps}</p> : null}
         </label>
-        <label htmlFor="tips">
-          Tips - Enter any tips, warnings, supplies needed, etc
+        <label htmlFor="resources">
+          Resources - Enter any tips, warnings, supplies needed, etc
           <textarea
             type="text"
-            name="tips"
-            id="tips"
-            value={howtoState.tips}
+            name="resources"
+            id="resources"
+            value={howtoState.resources}
             onChange={inputChange}
           />
         </label>
         <button type="submit" disabled={buttonDisabled}>
           Create Post
         </button>
-      </form>
+        </form>
     </HowCard>
+      <HowToCardList />
+      </div>
   );
 };
 

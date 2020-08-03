@@ -1,28 +1,34 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios';
+import styled from 'styled-components';
+import { useHistory, useParams } from 'react-router-dom';
 
 import axiosWithAuth from "../utils/axiosWithAuth";
 import HowToForm from './HowToForm';
 import HowToContext from "../contexts/HowToContext";
 
+import dummyHowTos from "../dummyData";
+
 
 const initialHowTo = {
     title: "",
-    instructions: "",
     steps: "",
-    tips: "",
+    resources: "",
     id: ""
 };
 
 const HowToCardList = () => {
     const { howTos, setHowTos } = useContext(HowToContext);
-    const [howToEdit, setHowToEdit] = useState(initialHowTo);
+    const [howToEdit, setHowToEdit] = useState(dummyHowTos);
     const [editing, setEditing] = useState(false);
+
+    const {push} = useHistory();
+    const params = useParams();
 
     // get request for howTos
     const getHowTos = () => {
         axios
-            .get('https://how-to1.herokuapp.com/api/howtos')
+            .get('https://reqres.in/api/howtos')
             .then(res => setHowTos(res.data))
             .catch(err => console.log(err));
     };
@@ -33,34 +39,17 @@ const HowToCardList = () => {
     }, []);
 
 
-    // edit howTo
-    const editHowTo = (howTo) => {
-        setEditing(true);
-        setHowToEdit(howTo);
-    };
-
-    const saveEdit = (e) => {
-        e.preventDefault();
-
-        axiosWithAuth()
-            .put(`/howtos/${howToEdit.id}`, howToEdit)
-            .then((res) => {
-                console.log("Edit put res:", res.data);
-            })
-            .catch((err) => {
-                console.log("edit put error:", err);
-            })
-    
-     }
 
     //  delete howTo
-     const deleteHowTo = (howTo) => {
+     const deleteHowTo = (e) => {
+         e.preventDefault()
         axiosWithAuth()
-            .delete(`/howtos/${howTos.id}`)
+            .delete(`/${dummyHowTos.id}`, howTos)
             .then((res) => {
                 console.log('delete res:', res);
-                setHowTos(howToEdit);
+                getHowTos()
                 setEditing(false);
+                push('/howto-form')
             })
             .catch(err => console.log("delete err:", err));
      }
@@ -68,27 +57,23 @@ const HowToCardList = () => {
   
      return (
          <div className="howto-list">
-             <HowToForm />
-             <ul>
-                {howTos.map((howTo) => (
-                    <li key={howTo.id} onClick={() => editHowTo(howTo)}>
+                {dummyHowTos.map((dummyHowTo) => (
+                    <HowToCard>
                         <div classname="howto-card">
-                            <h4>{howTo.title}</h4>
-                            <h3>{howTo.instructions}</h3>
-                            <h3>{howTo.steps}</h3>
-                            <h3>{howTo.tips}</h3>
+                            <h4>{dummyHowTo.title}</h4>
+                            <p>{dummyHowTo.steps}</p>
+                            <p>{dummyHowTo.resources}</p>
                         </div>
-                        <button className="delete" 
+                        <Button className="delete" 
                         onClick={deleteHowTo}>
                             Delete
-                        </button>
-                        <button className="edit" 
-                        onClick={saveEdit}>
-                            Edit
-                        </button>
-                    </li>
+                        </Button>
+                        <Button className="edit" 
+                        onClick={() => push(`/edit-howto`)}>
+                            Edit How-To
+                        </Button>
+                        </HowToCard>
                 ))}
-             </ul>
             
          </div>
      )
@@ -119,3 +104,19 @@ export default HowToCardList;
 //         <button onClick={sortDescending}>Descending</button>
 //     </div>
 // )
+
+
+const HowToCard = styled.div`
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 1rem;
+    background-color: lightgray;
+    border: 0.3rem solid gray;
+`
+
+const Button = styled.button`
+    border: 1px solid orange;
+    margin: 7px;
+`

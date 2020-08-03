@@ -12,6 +12,7 @@ import HowToForm from './components/HowToForm.js';
 import AboutPage from './components/AboutPage.js';
 import HowToCardList from './components/HowToCardList';
 import HowToContext from './contexts/HowToContext';
+import EditHowTo from './components/EditHowTo';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <SignUpForm />
         </Route>
         <PrivateRoute exact path="/howto-form" component={HowToForm} />
+        <PrivateRoute exact path="/edit-howto" component={EditHowTo} />
       </Switch>
     </Router>
     </HowToContext.Provider>
